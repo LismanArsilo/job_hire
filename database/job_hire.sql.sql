@@ -1,3 +1,4 @@
+-- create table
 create table employee_range(
     emra_id serial primary key NOT NULL,
     emra_range_min integer UNIQUE,
@@ -58,9 +59,10 @@ create table talent_apply_progress(
     tapr_status varchar(15),
     tapr_comment varchar(256),
     tapr_entity_id integer,
-    tapr_taap_id integer
+    tapr_roac_id integer
 );
 
+--create fk key
 ALTER TABLE client 
 ADD FOREIGN KEY (clit_addr_id)
 REFERENCES address(addr_id) on update cascade on delete cascade ;
@@ -109,15 +111,8 @@ ADD FOREIGN KEY (tapr_entity_id)
 REFERENCES talent_apply(taap_entity_id) on update cascade on delete cascade;
 
 ALTER TABLE talent_apply_progress
-ADD FOREIGN KEY (tapr_taap_id)
-REFERENCES talent_apply(taap_id) on update cascade on delete cascade;
-
--- tapr_roac_id === taap_id
-
-
--- ALTER TABLE talent_apply_progress
--- ADD FOREIGN KEY (tapr_roac_id)
--- REFERENCES talent_apply(taap_entity_id);
+ADD FOREIGN KEY (tapr_roac_id)
+REFERENCES route_actions(roac_id) on update cascade on delete cascade;
 
 
 
