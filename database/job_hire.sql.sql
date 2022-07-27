@@ -27,8 +27,8 @@ create table job_post(
     jopo_id serial primary key NOT NULL.
     jopo_number varchar(25) UNIQUE NOT NULL,
     jopo_title varchar(255) NOT NULL,
-    jopo_min_salary number,
-    jopo_max_salary number,
+    jopo_min_salary integer,
+    jopo_max_salary integer,
     jopo_description json,
     jopo_responsibility json,
     jopo_target json,
@@ -45,7 +45,7 @@ create table job_post(
     jopo_status varchar(15)    
 );
 create table talent_apply(
-    taap_id serial primary key NOT NULL,
+    taap_id serial NOT NULL,
     taap_entity_id integer NOT NULL,
     taap_jopo_id integer NOT NULL,
     taap_intro varchar(512),
@@ -96,7 +96,7 @@ ADD FOREIGN KEY (jopo_status)
 REFERENCES talent_apply(taap_status) on update cascade on delete cascade;
 
 ALTER TABLE talent_apply
-ADD PRIMARY KEY ( taap_entity_id , taap_jopo_id ) 
+ADD PRIMARY KEY (taap_id, taap_entity_id , taap_jopo_id) 
 
 ALTER TABLE talent_apply 
 ADD FOREIGN KEY (taap_entity_id)
@@ -113,8 +113,3 @@ REFERENCES talent_apply(taap_entity_id) on update cascade on delete cascade;
 ALTER TABLE talent_apply_progress
 ADD FOREIGN KEY (tapr_roac_id)
 REFERENCES route_actions(roac_id) on update cascade on delete cascade;
-
-
-
-
-
