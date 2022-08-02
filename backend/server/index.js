@@ -1,24 +1,29 @@
+import "dotenv/config";
 import dotenv from "dotenv";
 import express from "express";
+import compression from "compression";
+import models, { sequelize } from "./models/init-models";
+import routes from "./routes/indexRoute";
 dotenv.config();
 
+const port = process.env.PORT || 3003;
 const app = express();
 
-const port = process.env.port || 3003;
+app.use(express.json());
+app.use(compression());
+app.use(async (req, res, next) => {
+  req.context = { models };
+  next();
+});
 
-app.listen(port, () => console.log(`Server listen on port ${port}`));
-app.get("/", responseText);
-app.get("/json", responseJson);
+app.use("/employee_range", routes.empRange);
 
-function responseText(req, res) {
-  res.setHeader("Content-Type", "text/plain");
-  res.send("Project Bootcamp");
-}
-function responseJson(req, res) {
-  res.json({
-    employee: {
-      empId: 100,
-      name: "Lisman",
-    },
+const dropDatabaseSync = false;
+sequelize.sync({ force: dropDatabaseSync }).then(async () => {
+  if (dropDatabaseSync) {
+    console.info("Database do not drop");
+  }
+  app.listen(port, () => {
+    console.info(`Server is listening on port ${port}`);
   });
-}
+});
