@@ -1,5 +1,7 @@
-import empRange from "./employee_rangeRoute";
+import EmpRange from "./employee_rangeRoute";
+import Client from "./client";
 
 export default {
-  empRange,
+  EmpRange,
+  Client,
 };

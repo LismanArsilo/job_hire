@@ -3,10 +3,10 @@ import indexCtrl from "../controllers/indexCtrl";
 
 const router = Router();
 
-router.get("/", indexCtrl.empRange.findAll);
-router.get("/:id", indexCtrl.empRange.findOne);
-router.post("/", indexCtrl.empRange.create);
-router.put("/:id", indexCtrl.empRange.update);
-router.delete("/:id", indexCtrl.empRange.deleted);
+router.get("/", indexCtrl.EmpRange.findAll);
+router.get("/:id", indexCtrl.EmpRange.findOne);
+router.post("/", indexCtrl.EmpRange.create);
+router.put("/:id", indexCtrl.EmpRange.update);
+router.delete("/:id", indexCtrl.EmpRange.deleted);
 
 export default router;

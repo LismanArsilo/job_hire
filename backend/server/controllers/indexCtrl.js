@@ -1,5 +1,7 @@
-import empRange from "./employee_rangeCtrl";
+import EmpRange from "./employee_rangeCtrl";
+import Client from "./client";
 
 export default {
-  empRange,
+  EmpRange,
+  Client,
 };
