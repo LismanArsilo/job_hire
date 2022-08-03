@@ -16,7 +16,8 @@ app.use(async (req, res, next) => {
   next();
 });
 
-app.use("/employee_range", routes.empRange);
+app.use("/employee_range", routes.EmpRange);
+app.use("/client", routes.Client);
 
 const dropDatabaseSync = false;
 sequelize.sync({ force: dropDatabaseSync }).then(async () => {
