@@ -18,6 +18,11 @@ app.use(async (req, res, next) => {
 
 app.use("/employee_range", routes.EmpRange);
 app.use("/client", routes.Client);
+app.use("/job_type", routes.JobType);
+app.use("/job_category", routes.JobCtgry);
+app.use("/job_post", routes.JobPost);
+app.use("/talent_apply", routes.TalApply);
+app.use("/talent_apply_progress", routes.TalProg);
 
 const dropDatabaseSync = false;
 sequelize.sync({ force: dropDatabaseSync }).then(async () => {
